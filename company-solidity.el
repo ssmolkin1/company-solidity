@@ -180,14 +180,15 @@
     "ureal"
     "msg"
     "block"
-    "tx")
+    "tx"
+    "solidity")
 )
 
-(defun company-solidity-backend (command &optional arg &rest ignored)
+(defun company-solidity (command &optional arg &rest ignored)
   "Autocompletion for solidity with company mode."
     (interactive (list 'interactive))
     (cl-case command
-	(interactive (company-begin-backend 'company-solidity-backend))
+	(interactive (company-begin-backend 'company-solidity))
 	(prefix (and (eq major-mode 'solidity-mode)
 		    (company-grab-symbol)))
     (candidates
@@ -195,6 +196,7 @@
 	(lambda (c) (string-prefix-p arg c))
 	solidity-keywords))))
 
+(add-to-list 'company-backends 'company-solidity)
 
 (provide 'company-solidity)
 
