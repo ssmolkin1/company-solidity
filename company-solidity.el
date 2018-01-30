@@ -5,7 +5,7 @@
 ;; Author: Samuel Smolkin <sam@future-precedent.org>
 ;; URL: https://github.com/ssmolkin1/company-solidity
 ;; Keywords: solidity, completion
-;; Version: 1.1.0
+;; Version: 1.1.1
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -211,25 +211,26 @@
     "sha3"
     "ripemd160"
     "ecrecover"
-    "blockhash"
-    "coinbase"
-    "difficulty"
-    "gaslimit"
-    "number"
-    "timestamp"
-    "data"
-    "gas"
-    "sender"
-    "sig"
-    "value"
+    "block.blockhash"
+    "block.coinbase"
+    "block.difficulty"
+    "block.gaslimit"
+    "block.number"
+    "block.timestamp"
+    "msg.data"
+    "msg.gas"
+    "msg.sender"
+    "msg.sig"
+    "msg.value"
     "now"
-    "gasprice"
-    "origin"
-    "balance"
-    "transfer"
-    "call"
-    "callcode"
-    "delegatecall")
+    "gasprice" ;; tx method
+    "origin"   ;; tx method
+    "balance"  ;; address method
+    "transfer" ;; address method
+    "send"     ;; address method
+    "call"     ;; address method
+    "callcode" ;; address method
+    "delegatecall") ;; address method
 )
 
 (defun company-solidity (command &optional arg &rest ignored)
