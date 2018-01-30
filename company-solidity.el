@@ -1,11 +1,33 @@
-;;; company-solidity.el --- Company mode backend for solidity-mode
+;;; company-solidity.el --- Company-mode back-end for solidity-mode
+
+;; Copyright (C) 2018  Samuel Smolkin
+
+;; Author: Samuel Smolkin <sam@future-precedent.org>
+;; URL: https://github.com/ssmolkin1/company-solidity
+;; Keywords: solidity, completion
+;; Version: 1.0.0
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
-(require 'cl-lib)
-(require 'company)
+;; This package provides a simple company-mode back-end for auto-completing Solidity keywords when working in solidity-mode.
 
 ;;; Code:
+
+(require 'cl-lib)
+(require 'company)
 
 (defconst solidity-keywords
   '("after"
