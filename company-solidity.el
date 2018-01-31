@@ -5,7 +5,7 @@
 ;; Author: Samuel Smolkin <sam@future-precedent.org>
 ;; URL: https://github.com/ssmolkin1/company-solidity
 ;; Keywords: solidity, completion
-;; Version: 1.1.1
+;; Version: 1.1.2
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -223,8 +223,8 @@
     "msg.sig"
     "msg.value"
     "now"
-    "gasprice" ;; tx method
-    "origin"   ;; tx method
+    "tx.gasprice" ;; tx method
+    "tx.origin"   ;; tx method
     "balance"  ;; address method
     "transfer" ;; address method
     "send"     ;; address method
@@ -239,6 +239,7 @@ Argument COMMAND `company-backend` functions.
 Optional argument ARG the completion target prefix.
 Optional argument IGNORED Additional arguments are ingnored."
     (interactive (list 'interactive))
+    (setq company-minimum-prefix-length 2)
     (cl-case command
 	(interactive (company-begin-backend 'company-solidity))
 	(prefix (and (eq major-mode 'solidity-mode)
