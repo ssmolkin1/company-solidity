@@ -6,6 +6,7 @@
 ;; URL: https://github.com/ssmolkin1/company-solidity
 ;; Keywords: solidity, completion
 ;; Version: 1.1.2
+;; Package-Requires: ((company "0.9.0") (cl-lib "0.5.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -233,6 +234,7 @@
     "delegatecall") ;; address method
 )
 
+;;;###autoload
 (defun company-solidity (command &optional arg &rest ignored)
   "Autocompletion for solidity with company mode.
 Argument COMMAND `company-backend` functions.
