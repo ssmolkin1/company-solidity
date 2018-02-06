@@ -20,7 +20,7 @@ First, install the package from MELPA with `M-x package-install RET company-soli
 (require 'company-solidity)
 ```
 
-Alternatively, to install with (use-package)[https://github.com/jwiegley/use-package], put the following in your `init.el`:
+Alternatively, to install with [use-package](https://github.com/jwiegley/use-package), put the following in your `init.el`:
 
 ```lisp
 (use-package company-solidity
