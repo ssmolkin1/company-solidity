@@ -14,20 +14,18 @@ In a word, smart. The completion suggestions are *not context dependent*.
 
 ## Installation
 
-*MELPA pull request is pending. For now, you will need to install manually per the instructions below.*
-
-First, clone the repo:
-
-```bash
-git clone https://github.com/ssmolkin1/company-solidity.git
-```
-
-Optionally, byte-compile the `company-solidity.el` file for faster loading and usage.
-
-Then add the following line to your `init.el` file.
+First, install the package from MELPA with `M-x package-install RET company-solidity RET`, then put the following in your `init.el`:
 
 ```lisp
-(load "/path/to/company-solidity")
+(require 'company-solidity)
+```
+
+Alternatively, to install with (use-package)[https://github.com/jwiegley/use-package], put the following in your `init.el`:
+
+```lisp
+(use-package company-solidity
+  :ensure t
+  :after (company))
 ```
 
 That's it. Now open up a file in `solitidy-mode` and try it out!
@@ -43,7 +41,6 @@ If you want autocomplete suggestions to include local variables, as well as Soli
 ```lisp
 (add-hook 'solidity-mode-hook
 	(lambda ()
-	(load "/path/to/company-solidity")
 	(set (make-local-variable 'company-backends)
 		(append '((company-solidity company-capf company-dabbrev-code))
 			company-backends))))
