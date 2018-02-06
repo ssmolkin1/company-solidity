@@ -5,7 +5,7 @@
 ;; Author: Samuel Smolkin <sam@future-precedent.org>
 ;; URL: https://github.com/ssmolkin1/company-solidity
 ;; Keywords: solidity, completion
-;; Version: 1.1.2
+;; Version: 1.1.3
 ;; Package-Requires: ((company "0.9.0") (cl-lib "0.5.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -56,7 +56,7 @@
     "mapping"
     "modifier"
     "new"
-    "pragma"
+    "pragma solidity "
     "private"
     "public"
     "internal"
@@ -204,7 +204,6 @@
     "msg"
     "block"
     "tx"
-    "solidity"
     "addmod"
     "mulmod"
     "keccak256"
