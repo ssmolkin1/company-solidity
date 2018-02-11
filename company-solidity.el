@@ -240,7 +240,7 @@ Argument COMMAND `company-backend` functions.
 Optional argument ARG the completion target prefix.
 Optional argument IGNORED Additional arguments are ingnored."
     (interactive (list 'interactive))
-    (setq company-minimum-prefix-length 2)
+    (set (make-local-variable 'company-minimum-prefix-length) 2)
     (cl-case command
 	(interactive (company-begin-backend 'company-solidity))
 	(prefix (and (eq major-mode 'solidity-mode)
