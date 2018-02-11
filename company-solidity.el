@@ -30,7 +30,7 @@
 (require 'cl-lib)
 (require 'company)
 
-(defconst solidity-keywords
+(defconst company-solidity-keywords
   '("after"
     "as"
     "assembly"
@@ -248,7 +248,7 @@ Optional argument IGNORED Additional arguments are ingnored."
     (candidates
     (cl-remove-if-not
 	(lambda (c) (string-prefix-p arg c))
-	solidity-keywords))))
+	company-solidity-keywords))))
 
 (add-to-list 'company-backends 'company-solidity)
 
