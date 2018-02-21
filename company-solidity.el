@@ -5,7 +5,7 @@
 ;; Author: Samuel Smolkin <sam@future-precedent.org>
 ;; URL: https://github.com/ssmolkin1/company-solidity
 ;; Keywords: solidity, completion
-;; Version: 1.1.3
+;; Version: 1.1.4
 ;; Package-Requires: ((company "0.9.0") (cl-lib "0.5.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
