@@ -4,10 +4,10 @@
 This is a simple company-mode back-end for autocompletion for the Solidity programming langauge. It is intended to be used with [solidity-mode](https://github.com/ethereum/emacs-solidity).
 
 ### What it does
-Give completion suggestions for solidity keywords, global variables, and address methods.
+Give completion suggestions for Solidity keywords, global variables, and address methods.
 
 ### What it isn't
-In a word, smart. The completion suggestions are *not context dependent*.
+Smart. The completion suggestions are *not context dependent*.
 
 ### Something to watch out for
 `company-mode` treats `.` as the end of a word, and will cut off compeletion suggestions when you type a `.`. So, when you've typed `msg` you will get `msg.sender`, `msg.value` etc. as completion suggestions. However, as soon as you type `msg.`, the suggestions will disappear.
