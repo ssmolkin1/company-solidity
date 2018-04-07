@@ -3,10 +3,10 @@
 ;; Copyright (C) 2018  Samuel Smolkin
 
 ;; Author: Samuel Smolkin <sam@future-precedent.org>
-;; URL: https://github.com/ssmolkin1/company-solidity
-;; Keywords: solidity, completion
-;; Version: 1.1.5
-;; Package-Requires: ((company "0.9.0") (cl-lib "0.5.0"))
+;; URL: https://github.com/ethereum/emacs-solidity
+;; Keywords: solidity, completion, company
+;; Version: 2.0.0
+;; Package-Requires: ((company "0.9.0") (cl-lib "0.5.0") (solidity-mode "0.1.8"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -29,214 +29,100 @@
 
 (require 'cl-lib)
 (require 'company)
+(require 'solidity-mode)
 
-(defconst company-solidity-keywords
-  '("after"
-    "as"
-    "assembly"
-    "break"
-    "constant"
-    "anonymous"
-    "continue"
-    "contract"
-    "default"
-    "delete"
-    "do"
-    "else"
-    "event"
-    "external"
-    "for"
-    "function"
-    "if"
-    "import"
-    "in"
-    "is"
-    "indexed"
-    "library"
-    "mapping"
-    "modifier"
-    "new"
-    "pragma solidity "
-    "private"
-    "public"
-    "internal"
-    "pure"
-    "view"
-    "return"
-    "returns"
-    "struct"
-    "switch"
-    "this"
-    "using"
-    "var"
-    "while"
-    "enum"
-    "throw"
-    "assert"
-    "require"
-    "revert"
-    "storage"
-    "memory"
-    "true"
-    "false"
-    "wei"
-    "szabo"
-    "finney"
-    "ether"
-    "seconds"
-    "minutes"
-    "hours"
-    "days"
-    "weeks"
-    "years"
-    "constant"
-    "public"
-    "indexed"
-    "storage"
-    "memory"
-    "address"
-    "bool"
-    "bytes"
-    "bytes0"
-    "bytes1"
-    "bytes2"
-    "bytes3"
-    "bytes4"
-    "bytes5"
-    "bytes6"
-    "bytes7"
-    "bytes8"
-    "bytes9"
-    "bytes10"
-    "bytes11"
-    "bytes12"
-    "bytes13"
-    "bytes14"
-    "bytes15"
-    "bytes16"
-    "bytes17"
-    "bytes18"
-    "bytes19"
-    "bytes20"
-    "bytes21"
-    "bytes22"
-    "bytes23"
-    "bytes24"
-    "bytes25"
-    "bytes26"
-    "bytes27"
-    "bytes28"
-    "bytes29"
-    "bytes30"
-    "bytes31"
-    "bytes32"
-    "int"
-    "int8"
-    "int16"
-    "int24"
-    "int32"
-    "int40"
-    "int48"
-    "int56"
-    "int64"
-    "int72"
-    "int80"
-    "int88"
-    "int96"
-    "int104"
-    "int112"
-    "int120"
-    "int128"
-    "int136"
-    "int144"
-    "int152"
-    "int160"
-    "int168"
-    "int176"
-    "int184"
-    "int192"
-    "int200"
-    "int208"
-    "int216"
-    "int224"
-    "int232"
-    "int240"
-    "int248"
-    "int256"
-    "mapping"
-    "real"
-    "string"
-    "text"
-    "uint"
-    "uint8"
-    "uint16"
-    "uint24"
-    "uint32"
-    "uint40"
-    "uint48"
-    "uint56"
-    "uint64"
-    "uint72"
-    "uint80"
-    "uint88"
-    "uint96"
-    "uint104"
-    "uint112"
-    "uint120"
-    "uint128"
-    "uint136"
-    "uint144"
-    "uint152"
-    "uint160"
-    "uint168"
-    "uint176"
-    "uint184"
-    "uint192"
-    "uint200"
-    "uint208"
-    "uint216"
-    "uint224"
-    "uint232"
-    "uint240"
-    "uint248"
-    "uint256"
-    "ureal"
-    "msg"
-    "block"
-    "tx"
-    "addmod"
-    "mulmod"
-    "keccak256"
+;; Additional completion targets whcih are not part of solidity-mode syntax-highlighting keywords lists:
+
+(defconst company-solidity-additional-math
+  '("addmod"
+    "mulmod"))
+
+(defconst company-solidity-additional-hashing
+  '("keccak256"
     "sha256"
     "sha3"
     "ripemd160"
-    "ecrecover"
-    "block.blockhash"
+    "ecrecover"))
+
+(defconst company-solidity-additional-block-methods
+  '("block.blockhash"
     "block.coinbase"
     "block.difficulty"
     "block.gaslimit"
     "block.number"
     "block.timestamp"
-    "msg.data"
+    "now"))
+
+(defconst company-solidity-additional-msg-methods
+  '("msg.data"
     "msg.gas"
     "msg.sender"
     "msg.sig"
     "msg.value"
-    "now"
-    "tx.gasprice" ;; tx method
-    "tx.origin"   ;; tx method
-    "balance"  ;; address method
-    "transfer" ;; address method
-    "send"     ;; address method
-    "call"     ;; address method
-    "callcode" ;; address method
-    "delegatecall" ;; address method
-    "emit")	
-)
+    "gasleft"))
+
+(defconst company-solidity-additional-tx-methods
+  '("tx.gasprice"
+    "tx.origin"))
+
+(defconst company-solidity-additional-address-methods
+  '("balance"
+    "transfer"
+    "send"
+    "call"
+    "callcode"
+    "delegatecall"))
+
+(defconst company-solidity-additional-contracts
+  '("super"
+    "selfdistruct"
+    "suicide"))
+
+(defconst company-solidity-additional-modifiers
+  '("payable"))
+
+(defconst company-solidity-additional-pragma
+  '("solidity"))
+
+(defconst company-solidity-additional-types
+  '("fixed"
+    "ufixed"
+    "hex"))
+
+(defconst company-solidity-additional-function-methods
+  '("selector"))
+
+;; defvar symbols taken from solidity-mode.el to avoid reference warnings
+(defvar solidity-keywords)
+(defvar solidity-constants)
+(defvar solidity-variable-modifier)
+(defvar solidity-builtin-types)
+(defvar solidity-builtin-constructs)
+
+;; Completion targets taken from solidity-mode syntax-highlighting keywords lists, plus additional targets above.
+(defconst company-solidity-keywords
+  (append
+   solidity-keywords
+   solidity-constants
+   solidity-variable-modifier
+   solidity-builtin-types
+   solidity-builtin-constructs
+   company-solidity-additional-math
+   company-solidity-additional-hashing
+   company-solidity-additional-block-methods
+   company-solidity-additional-msg-methods
+   company-solidity-additional-tx-methods
+   company-solidity-additional-address-methods
+   company-solidity-additional-contracts
+   company-solidity-additional-modifiers
+   company-solidity-additional-pragma
+   company-solidity-additional-types
+   company-solidity-additional-function-methods))
 
 ;;;###autoload
 (defun company-solidity (command &optional arg &rest ignored)
   "Autocompletion for solidity with company mode.
+
 Argument COMMAND `company-backend` functions.
 Optional argument ARG the completion target prefix.
 Optional argument IGNORED Additional arguments are ingnored."
