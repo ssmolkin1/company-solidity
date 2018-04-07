@@ -75,7 +75,7 @@
 
 (defconst company-solidity-additional-contracts
   '("super"
-    "selfdistruct"
+    "selfdestruct"
     "suicide"))
 
 (defconst company-solidity-additional-modifiers
