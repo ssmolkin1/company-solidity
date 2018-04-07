@@ -1,5 +1,8 @@
 # company-solidity
 
+## Now fully integrated in solidity-mode, no longer independently maintained
+`company-solidity` is now fully integrated in `solidity-mode`, and will be installed automatically alongside it when you install (or upgrade) that package, and will be enabled automatically for users who have `company-mode` installed. Thus, you no longer need to, nor should you, install `company-solidity` as a stand-alone package. This repo will continue to be hosted, but will no longer be updated going forward.
+
 ## Upgrade to version 2.0.0
 `company-solidity` has now been updated to:
 - pull completion targets from `solidity-mode` syntax highlighting keyword lists, for greater maintainability; and
